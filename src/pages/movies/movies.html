@@ -27,7 +27,7 @@
 <ion-content padding class='test'>
 
   <ion-fab bottom right>
-    <button ion-fab color="danger" mini><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="danger" mini><ion-icon name="person-add"></ion-icon></button>
     <ion-fab-list side="top">
       <a href="https://www.linkedin.com/in/vitor-silva-lima-233849a9/" ion-fab><ion-icon name="logo-linkedin"></ion-icon></a>
       <a href="https://github.com/vitorsilvalima" ion-fab><ion-icon name="logo-github"></ion-icon></a>>
@@ -36,7 +36,7 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col col-6 col-md-4 *ngFor='let movie of movies$ | async' >
+      <ion-col col-6 col-md-4 col-lg-2 *ngFor='let movie of movies$ | async' >
 
     <ion-card class='card'  class="movie-info">
 
