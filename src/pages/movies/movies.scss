@@ -38,7 +38,7 @@ page-movies {
 
   .options_button{
     color: #ecf0f1 !important;
-    border-bottom-color: #ecf0f1 !important;
+    border-bottom-color: color($colors, danger) !important;
   }
   .search-bar{
     max-width: 60%;
