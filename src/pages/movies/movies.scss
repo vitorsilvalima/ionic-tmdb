@@ -1,19 +1,42 @@
 page-movies {
 
+  .test{
+    background: color($colors, dark);
+    border: 10px;
+  }
+
+
   ion-card {
-    // position: relative;
+    position: relative;
     text-align: center;
   }
 
-  // .card-title {
-  //   position: absolute;
-  //   top: 36%;
-  //   font-size: 2.0em;
-  //   width: 100%;
-  //   font-weight: bold;
-  //   color: #fff;
-  // }
+  .card-title{
+      // position: absolute;
+      // top: 30%;
+      font-size: 0.9em;
+      width: 100%;
+      // font-weight: bold;
+      color: #ecf0f1;
+      background: transparent;
+  }
 
+  .card{
+    background: color($colors, dark);
+  }
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    color:#ecf0f1;
+  }
 
+  .scroll-content{
+    overflow: auto;
+  }
 
+  .options_button{
+    min-width: 40% !important;
+  }
 }

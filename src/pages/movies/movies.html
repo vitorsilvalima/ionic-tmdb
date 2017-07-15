@@ -6,31 +6,89 @@
 -->
 <ion-header>
 
+  <!--<ion-navbar color='primary'>
+    <ion-title>Movies</ion-title>
+  </ion-navbar>-->
+
   <ion-navbar color='primary'>
-    <ion-title>movies</ion-title>
+    <ion-title>Popovers</ion-title>
+    <ion-buttons class='options_button' end>
+      <ion-item>
+        <ion-select style="min-width: 100%">
+          <ion-option value="nes">NES</ion-option>
+          <ion-option value="n64">Nintendo64</ion-option>
+          <ion-option value="ps">PlayStation</ion-option>
+          <ion-option value="genesis">Sega Genesis</ion-option>
+          <ion-option value="saturn">Sega Saturn</ion-option>
+          <ion-option value="snes">SNES</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-buttons>
   </ion-navbar>
 
+
+  <!--<ion-toolbar color="primary">
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>-->
 </ion-header>
 
-<ion-content padding>
+<ion-content #popoverContent  padding class='test'>
 
-  <!--<ion-card *ngFor='let movie of movies$ | async'>
+<ion-grid>
+  <ion-row>
+    <ion-col col-6 col-md-4 *ngFor='let movie of movies$ | async' >
 
-    <ion-card-header>
-      {{movie.title}}
-    </ion-card-header>
+  <ion-card class='card'  class="movie-info">
 
-    <ion-card-content>
-    </ion-card-content>
-
-  </ion-card>-->
-
-  <ion-card *ngFor='let movie of movies$ | async'>
-    <ion-card-title>
+    <ion-card-title #popoverText  class="card-title">
       {{movie.title}}
     </ion-card-title>
-    <img src="{{'https://image.tmdb.org/t/p/w500'+movie.poster_path}}"/>
+
+    <img  src="{{'https://image.tmdb.org/t/p/w500'+movie.poster_path}}"/>
+
+    <div class="card-subtitle">
+      <ion-row>
+        <ion-col>
+            <ion-icon name="star"></ion-icon>
+            <div>{{movie.vote_average}}</div>
+        </ion-col>
+        <ion-col>
+            <ion-icon name="calendar"></ion-icon>
+            <div>{{movie.release_date}}</div>
+        </ion-col>
+      </ion-row>
+    </div>
+
   </ion-card>
+
+
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+  <!--<ion-card class='card' *ngFor='let movie of movies$ | async'  class="movie-info">
+
+    <ion-card-title #popoverText  class="card-title">
+      {{movie.title}}
+    </ion-card-title>
+
+    <img  src="{{'https://image.tmdb.org/t/p/w500'+movie.backdrop_path}}"/>
+
+    <div class="card-subtitle">
+      <ion-row>
+        <ion-col>
+            <ion-icon name="star"></ion-icon>
+            <div>{{movie.vote_average}}</div>
+        </ion-col>
+        <ion-col>
+            <ion-icon name="calendar"></ion-icon>
+            <div>{{movie.release_date}}</div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+  </ion-card>-->
 
 
 </ion-content>

@@ -1,8 +1,7 @@
 import { MovieProvider } from '../../providers/movie/movie';
 import { APP_CONFIG, APP_DI_CONFIG } from '../../providers/config/config';
-
 import { MovieDetailPage } from './movie-detail/movie-detail';
-import { MoviesPage } from './movies';
+import { MoviesPage, PopoverPage } from './movies';
 
 import {  IonicPageModule } from 'ionic-angular';
 import {  HttpModule } from '@angular/http';
@@ -13,6 +12,7 @@ import { NgModule } from '@angular/core';
   declarations: [
     MoviesPage,
     MovieDetailPage,
+    PopoverPage
   ],
   imports: [
     IonicPageModule.forChild(MoviesPage),
@@ -20,7 +20,8 @@ import { NgModule } from '@angular/core';
   ],
   entryComponents: [
     MoviesPage,
-    MovieDetailPage
+    MovieDetailPage,
+    PopoverPage
   ],
   providers: [
     { provide: APP_CONFIG, useValue: APP_DI_CONFIG},
