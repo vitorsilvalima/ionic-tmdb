@@ -42,4 +42,17 @@ export class MovieProvider {
     return this.http.get(this.config.apiEndpoint+"/search/movie", reqOptions)
       .map(response =>  response.json().results as Movie[]);
   }
+
+  getMovieDetails(id: string) : Observable<Movie>{
+
+    const params = this.getURLParams();
+    //this will append video information to the api response
+    params.set('append_to_response','videos');
+    const reqOptions: RequestOptionsArgs = {
+      params: params
+    }
+
+    return this.http.get(this.config.apiEndpoint+`/movie/${id}`, reqOptions)
+      .map(response =>  response.json() as Movie);
+  }
 }

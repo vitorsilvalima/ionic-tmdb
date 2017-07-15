@@ -74,5 +74,9 @@ export class MoviesPage {
       setTimeout(()=>this.movieSearch$.next(""), 1000);
   }
 
+  goToDetails(id: string){
+    this.navCtrl.push(MovieDetailPage, {id: id});
+  }
+
 
 }

@@ -1,3 +1,26 @@
 movie-detail {
+  .page-content{
+    background: color($colors, dark);
+  }
 
+  ion-navbar{
+    border-bottom-color: color($colors, danger);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+
+  .test{
+    color: white;
+  }
+
+  .item-info {
+
+    min-height: 3rem !important;
+    padding-bottom: 0px;
+  }
+
+  .badge-info{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
 }

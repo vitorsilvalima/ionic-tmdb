@@ -26,7 +26,7 @@
 
 </ion-header>
 
-<ion-content padding class='test'>
+<ion-content padding class='page-content'>
 
   <ion-fab bottom right>
     <button ion-fab color="danger" mini><ion-icon name="person-add"></ion-icon></button>
@@ -38,9 +38,9 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col col-6 col-md-4 col-lg-2 *ngFor='let movie of movies$ | async' >
+      <ion-col col-6 col-md-4 col-lg-2 *ngFor='let movie of movies$ | async as Movie' >
 
-    <ion-card class='card'  class="movie-info">
+    <ion-card class='card'  class="movie-info" (click)='goToDetails(movie.id)'>
 
       <ion-card-title #popoverText  class="card-title">
         {{movie.title}}

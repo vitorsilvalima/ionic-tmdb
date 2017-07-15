@@ -1,11 +1,57 @@
-<ion-header>
-  <ion-navbar>
+
+<ion-header class='de'>
+
+  <ion-navbar color='primary'>
     <ion-title>
-      Movie Details
+      {{movie?.title}}
     </ion-title>
   </ion-navbar>
+
 </ion-header>
 
-<ion-content padding>
+<ion-content class='page-content' padding>
+
+  <ion-card *ngIf="this.movie; let movie">
+    <img  src="{{'https://image.tmdb.org/t/p/w500'+movie.backdrop_path}}"/>
+
+    <div class="card-subtitle">
+      <ion-list>
+        <ion-item class="item-info">
+          <ion-badge class="badge-info" *ngFor="let genre of movie.genres" item-start>{{genre.name}}</ion-badge>
+        </ion-item>
+        <ion-item class="item-info">
+          <ion-badge  item-start class="badge-info" *ngFor="let company of movie.production_companies">{{company.name}}</ion-badge>
+        </ion-item>
+      </ion-list>
+
+      <ion-row class="small-padding">
+        <ion-col>
+          <button ion-button clear small color="danger" icon-start>
+            <ion-icon name='star'></ion-icon>
+            {{movie.vote_average}}
+          </button>
+        </ion-col>
+        <ion-col text-center>
+          <button ion-button clear small color="danger" icon-start>
+            <ion-icon name='calendar'></ion-icon>
+            {{movie.release_date | date}}
+          </button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-card-content>
+      {{movie.overview}}
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col text-right>
+        <a href="{{'https://www.youtube.com/watch?v='+movie.videos.results[0].key}}" ion-button clear small color="danger" icon-start>
+          <ion-icon name='share-alt'></ion-icon>
+          Watch Trailler
+        </a>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
 
 </ion-content>

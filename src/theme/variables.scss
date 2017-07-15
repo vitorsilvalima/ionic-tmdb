@@ -41,6 +41,9 @@ $colors: (
   dark:       #111111
 );
 
+.page-content{
+  background: color($colors, dark);
+}
 
 // App iOS Variables
 // --------------------------------------------------
