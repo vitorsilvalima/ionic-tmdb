@@ -1,82 +1,117 @@
 import { Movie } from '../../interface/movie';
 import { MovieProvider } from '../../providers/movie/movie';
 import { MovieDetailPage } from './movie-detail/movie-detail';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { Content, NavController, NavParams } from 'ionic-angular';
 import { IonicPage } from 'ionic-angular/navigation/ionic-page';
-import { Observable, Subject } from 'rxjs/Rx';
+import { Subject, Subscription } from 'rxjs/Rx';
+
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
+
+
+
 
 /**
  * Add this in order to enable lazy loading
  */
-@IonicPage(
-)
+@IonicPage()
 @Component({
-  selector: 'page-movies',
-  templateUrl: 'movies.html',
+  selector: "page-movies",
+  templateUrl: "movies.html"
 })
-export class MoviesPage {
-  movies$:Observable<Movie[]>;
-  movieSearch$: Subject<string> = new Subject<string>();
+export class MoviesPage implements OnDestroy {
 
-  movieSelection='popular';
+  movieSearch$: Subject<string> = new Subject<string>();
+  movieSelection = "popular";
+  endPages: boolean = false;
+
+  private lastSearch: string;
+
+  movies: Movie[] = [];
+
+  private page: number = 0;
+  private subscription: Subscription;
+
 
   @ViewChild(Content) content: Content;
 
-  constructor(public navCtrl: NavController,
-        public navParams: NavParams,
-        private movieProvider:MovieProvider
-        ) {
-  }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private movieProvider: MovieProvider
+  ) {}
 
-  getSelection(selection:string){
+  getSelection(selection: string) {
+    this.reset();
     this.movieSearch$.next(selection);
+  }
+
+  private reset(){
+    this.page = 0;
+    this.movies = [];
+    this.endPages = false;
     this.content.scrollToTop(200);
   }
 
-  searchMovie(search:string){
+  searchMovie(search: string) {
+    this.reset();
     this.movieSearch$.next(search);
-    this.content.scrollToTop(200);
   }
 
   ionViewDidLoad() {
-    this.movies$ = this.movieSearch$
+    this.subscription = this.movieSearch$
       .debounceTime(400)
-      .distinctUntilChanged()
-      .switchMap((search:string)=>{
-        search = (!!!search) ? this.movieSelection : search;
+      .switchMap((search: string) => {
+        search = !!!search ? this.movieSelection : search;
 
-        const searchOpt: boolean = (
-            search==='now_playing' ||
-            search==='popular' ||
-            search==='top_rated' ||
-            search==='upcoming' ||
-            !!!search
-        ) ? true: false;
+        const searchOpt: boolean =
+          search === "now_playing" ||
+          search === "popular" ||
+          search === "top_rated" ||
+          search === "upcoming" ||
+          !!!search
+            ? true
+            : false;
 
-        if(searchOpt){
-          return this.movieProvider.getList(search);
-        }
-        else{
-          return this.movieProvider.searchMovie(search);
+        this.lastSearch = search;
+        this.page++;
+        if (searchOpt) {
+          return this.movieProvider.getList(search, this.page.toString());
+        } else {
+          return this.movieProvider.searchMovie(search, this.page.toString());
         }
       })
+      .subscribe((movies: Movie[]) => {
+        this.movies = this.movies.concat(movies);
 
-      setTimeout(()=>this.movieSearch$.next(""), 1000);
+        console.log(this.endPages);
+
+        if (movies.length === 0) {
+          this.endPages = true;
+        }
+      });
+
+    setTimeout(() => this.movieSearch$.next(""), 1000);
   }
 
-  goToDetails(id: string){
-    this.navCtrl.push(MovieDetailPage, {id: id});
+  goToDetails(id: string) {
+    this.navCtrl.push(MovieDetailPage, { id: id });
   }
 
+  doInfinite(infiniteScroll) {
+    this.movieSearch$.next(this.lastSearch);
+    //infiniteScroll.enable(!this.endPages);
+    setTimeout(() => {
+      infiniteScroll.complete();
+    }, 500);
+  }
 
+  ngOnDestroy(): void {
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
+  }
 }

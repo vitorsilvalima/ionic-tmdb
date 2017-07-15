@@ -24,18 +24,21 @@ export class MovieProvider {
     return params;
   }
 
-  getList(selection: string){
+  getList(selection: string, page = '0'){
     const params = this.getURLParams();
+    params.set("page", page);
     const reqOptions: RequestOptionsArgs = {
       params: params
     }
+    console.log(page);
     return this.http.get(this.config.apiEndpoint+`/movie/${selection}`, reqOptions)
       .map(response =>  response.json().results as Movie[]);
   }
 
-  searchMovie(term: string): Observable<Movie[]>{
+  searchMovie(term: string, page = '0'): Observable<Movie[]>{
     const params = this.getURLParams();
     params.set("query", term);
+    params.set("page", page);
     const reqOptions: RequestOptionsArgs = {
       params: params
     }
