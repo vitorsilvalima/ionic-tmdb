@@ -1,13 +1,16 @@
 import { Movie } from '../../interface/movie';
 import { MovieProvider } from '../../providers/movie/movie';
 import { MovieDetailPage } from './movie-detail/movie-detail';
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Content, NavController, NavParams } from 'ionic-angular';
 import { IonicPage } from 'ionic-angular/navigation/ionic-page';
 import { Observable, Subject } from 'rxjs/Rx';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -27,19 +30,22 @@ export class MoviesPage {
 
   movieSelection='popular';
 
+  @ViewChild(Content) content: Content;
+
   constructor(public navCtrl: NavController,
         public navParams: NavParams,
         private movieProvider:MovieProvider,
         ) {
   }
-  //this.navCtrl.push(MovieDetailPage);
 
   getSelection(selection:string){
     this.movieSearch$.next(selection);
+    this.content.scrollToTop(200);
   }
 
   searchMovie(search:string){
     this.movieSearch$.next(search);
+    this.content.scrollToTop(200);
   }
 
   ionViewDidLoad() {
