@@ -1,26 +1,22 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# The Movie Database Ionic App
+This is a responsive example app developed using Ionic 3 that calls the movie database API.
+It allow user to search for any movie.
 
-## How to use this template
+## Installation 
+If you would like to download the code and try it for yourself:
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+1. Clone the repo: https://github.com/vitorsilvalima/ionic-tmdb.git
+2. cd ionic-tmdb
+3. Install packages: npm install
+4. Build project and launch: ionic run
+5. Open your browser at: http://localhost:8100
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+## Author
+[Vitor Lima](https://vitorsilvalima.github.io/)
 
-### With the Ionic CLI:
+## License
+[MIT](https://github.com/vitorsilvalima/ionic-tmdb/blob/master/LICENCE)
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myTabs tabs
-```
 
-Then, to run it, cd into `myTabs` and run:
-
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
-
-Substitute ios for android if not on a Mac.
 
