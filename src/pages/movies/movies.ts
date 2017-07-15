@@ -34,7 +34,7 @@ export class MoviesPage {
 
   constructor(public navCtrl: NavController,
         public navParams: NavParams,
-        private movieProvider:MovieProvider,
+        private movieProvider:MovieProvider
         ) {
   }
 
