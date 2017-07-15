@@ -11,11 +11,16 @@ If you would like to download the code and try it for yourself:
 4. Build project and launch: ionic run
 5. Open your browser at: http://localhost:8100
 
+## Installation Android
+* ionic run cordova android
+# Screenshot
+![MoviePage](./screenshots/moviePage.png)
+
 ## Author
 [Vitor Lima](https://vitorsilvalima.github.io/)
 
 ## License
-[MIT](https://github.com/vitorsilvalima/ionic-tmdb/blob/master/LICENCE)
+[MIT](https://github.com/vitorsilvalima/ionic-tmdb/blob/master/License)
 
 
 
