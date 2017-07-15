@@ -3,12 +3,20 @@ import { MovieProvider } from '../../providers/movie/movie';
 import { MovieDetailPage } from './movie-detail/movie-detail';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular/navigation/ionic-page';
 import { Observable, Subject } from 'rxjs/Rx';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
-
+/**
+ * Add this in order to enable lazy loading
+ */
+@IonicPage(
+)
 @Component({
   selector: 'page-movies',
   templateUrl: 'movies.html',
