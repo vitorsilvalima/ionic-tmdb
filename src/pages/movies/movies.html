@@ -12,24 +12,27 @@
 
   <ion-navbar color='primary'>
     <ion-title>Popovers</ion-title>
-    <ion-buttons class='options_button' end>
-      <ion-item>
-        <ion-select style="min-width: 100%">
-          <ion-option value="nes">NES</ion-option>
-          <ion-option value="n64">Nintendo64</ion-option>
-          <ion-option value="ps">PlayStation</ion-option>
-          <ion-option value="genesis">Sega Genesis</ion-option>
-          <ion-option value="saturn">Sega Saturn</ion-option>
-          <ion-option value="snes">SNES</ion-option>
-        </ion-select>
-      </ion-item>
+    <ion-buttons end class='search-bar'>
+        <ion-searchbar></ion-searchbar>
     </ion-buttons>
   </ion-navbar>
 
-
-  <!--<ion-toolbar color="primary">
-    <ion-searchbar></ion-searchbar>
-  </ion-toolbar>-->
+    <ion-toolbar no-border-top  color='primary'>
+      <ion-segment [(ngModel)]="movieSelection">
+        <ion-segment-button value="now_playing" class='options_button'>
+          In Theater
+        </ion-segment-button>
+        <ion-segment-button value="popular" class='options_button'>
+          Popular
+        </ion-segment-button>
+        <ion-segment-button value="top_rated " class='options_button'>
+          Top Rated
+        </ion-segment-button>
+        <ion-segment-button value="upcoming" class='options_button'>
+          Upcoming
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content #popoverContent  padding class='test'>
@@ -54,7 +57,7 @@
         </ion-col>
         <ion-col>
             <ion-icon name="calendar"></ion-icon>
-            <div>{{movie.release_date}}</div>
+            <div>{{movie.release_date | date: 'yyyy'}}</div>
         </ion-col>
       </ion-row>
     </div>
