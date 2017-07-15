@@ -24,6 +24,15 @@ export class MovieProvider {
     return params;
   }
 
+  getList(selection: string){
+    const params = this.getURLParams();
+    const reqOptions: RequestOptionsArgs = {
+      params: params
+    }
+    return this.http.get(this.config.apiEndpoint+`/movie/${selection}`, reqOptions)
+      .map(response =>  response.json().results as Movie[]);
+  }
+
   searchMovie(term: string): Observable<Movie[]>{
     const params = this.getURLParams();
     params.set("query", term);
